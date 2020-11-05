@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('./controllers/admin/AdminArticleController.php');
 require_once('./controllers/admin/AdminCategoriesController.php');
 require_once('./controllers/admin/AdminUserController.php');

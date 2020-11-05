@@ -8,7 +8,7 @@ ob_start();
     <div class="col">
      <ul class="list-group">
          <li class="list-group-item">Nom: <?=$nom_article ?></li>
-         <li class="list-group-item">Prix: <span class="bagde badge-danger"><?=$total_article ?></span</li>
+         <li class="list-group-item">Prix: <span class="bagde badge-danger"><?=$prix_article ?></span</li>
          
      </ul>
      <br>
@@ -16,7 +16,7 @@ ob_start();
         <form action="index.php?action=pay" method="post">
             <input type="hidden" name="id_article" value="<?=$id_article;?>">
             <input type="hidden" name="prix_article" value="<?=$prix_article;?>">
-            <input type="hidden" name="total_article" value="<?=$total_article;?>">
+
             
             <script 
             src="https://checkout.stripe.com/checkout.js"

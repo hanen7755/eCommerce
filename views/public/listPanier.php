@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 //var_dump($_SESSION);
 //var_dump($_POST);
 ob_start();
@@ -41,7 +41,7 @@ ob_start();
 
             <?php if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) { // test l'existance du panier et s'il n'est pas vide
                 //var_dump($_SESSION['panier']['titre']);
-
+                //var_dump($_SESSION['panier']['nom_article']); die();
                 $nombreArticle = count($_SESSION['panier']['nom_article']);
                 for ($i = 0; $i < $nombreArticle; $i++) {
 
@@ -82,8 +82,8 @@ ob_start();
 
 
 
-<button><a href="index.php" class="btn btn-success" >Conitnuez vos achats?</a></button>
-<button name="payer" type="submit" class="card-link btn btn-danger" style="background-color: red;">Payer</button>
+<button><a href="index.php" class="btn btn-success" >Continuez vos achats?</a></button>
+<button name="pay" type="submit" class="card-link btn btn-danger" style="background-color: red;">Payer</button>
 </form>
 <?php
 

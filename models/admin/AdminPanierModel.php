@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once('./models/Driver.php');
 require_once('./models/Panier.php');
 require_once('./models/Article.php');

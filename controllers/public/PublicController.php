@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require_once('./models/admin/AdminCategoriesModel.php'); 
 require_once('./models/admin/AdminArticleModel.php'); 
 require_once('./assets/librairie/vendor/autoload.php');
@@ -28,8 +28,8 @@ class PublicController{
     } 
  
     public function checkout(){ 
-        if(isset($_POST['payer'])){ 
-            $image = $_POST['image']; 
+        if(isset($_POST['pay'])){ 
+            // $image = $_POST['image']; 
             $nom_article = $_POST['nom_article']; 
             $prix_article = $_POST['prix_article']; 
 
@@ -49,7 +49,7 @@ class PublicController{
             $charge = \Stripe\Charge::create([ 
                 'amount'=>$prix_article.'00', 
                 'currency'=>'eur', 
-                'description'=>'Ventes de fleurs', 
+                'description'=>'Ventes de produits de beauté', 
                 'source'=>$token 
             ]); 
          
@@ -108,46 +108,46 @@ class PublicController{
         require_once('./views/public/listPanier.php');
     }
      
-       public function ModifierQTeProduit($nom_article,$quantite){
-        if(creationPanier() && !isVerouille()){
+    //    public function ModifierQTeProduit($nom_article,$quantite){
+    //     if(creationPanier() && !isVerouille()){
     
-            if($quantite>0){
-                $position_produit = array_search($_SESSION['panier']['nom_article'],$nom_article);
+    //         if($quantite>0){
+    //             $position_produit = array_search($_SESSION['panier']['nom_article'],$nom_article);
     
-                if($position_produit!==false){
-                    $_SESSION['panier']['nom_article'][$position_produit] = $quantite;
-                }}
-            // }else{
-            //     supprimerArticle($nom_article);
-            // }
-        }else{
-                echo'Erreur, veuillez contacter un administrateur';
-            }
-        }
-        public function supprimerArticle($nom_article){
-            if(creationPanier() && !isVerouille()){
+    //             if($position_produit!==false){
+    //                 $_SESSION['panier']['nom_article'][$position_produit] = $quantite;
+    //             }}
+    //         // }else{
+    //         //     supprimerArticle($nom_article);
+    //         // }
+    //     }else{
+    //             echo'Erreur, veuillez contacter un administrateur';
+    //         }
+    //     }
+    //     public function supprimerArticle($nom_article){
+    //         //if(creationPanier() && !isVerouille()){
+    //             if(creationPanier()){
+    //             $tmp = array();
+    //             $tmp['id_article'] = array();
+    //             $tmp['nom_article'] = array();
+    //             $tmp['quantite'] = array();
+    //             $tmp['prix_article'] = array();
+    //             // $tmp['verrou'] = array();
 
-                $tmp = array();
-                $tmp['id_article'] = array();
-                $tmp['nom_article'] = array();
-                $tmp['quantite'] = array();
-                $tmp['prix_article'] = array();
-                // $tmp['verrou'] = array();
-
-                for($i=0; $i<count($_SESSION['panier']['nom_article']); $i++){
-                        if($_SESSION['panier']['nom_article'][$i] !== $nom_article){
-                            array_push( $_SESSION['panier']['id_article'],$_SESSION['panier']['id_article'][$i]);
-                array_push( $_SESSION['panier']['nom_article'],$_SESSION['panier']['nom_article'][$i]);
-                array_push( $_SESSION['panier']['quantite'],$_SESSION['panier']['quantite'][$i]);
-                array_push( $_SESSION['panier']['prix_article'],$_SESSION['panier']['prix_article'][$i]);
-                        }
-                }
-                $_SESSION['panier'] = $tmp;
-                unset($tmp);
-            }else{
-                echo'veuillez contacter un administrateur';
-            }
-        }
+    //             for($i=0; $i<count($_SESSION['panier']['nom_article']); $i++){
+    //                     if($_SESSION['panier']['nom_article'][$i] !== $nom_article){
+    //                         array_push( $_SESSION['panier']['id_article'],$_SESSION['panier']['id_article'][$i]);
+    //             array_push( $_SESSION['panier']['nom_article'],$_SESSION['panier']['nom_article'][$i]);
+    //             array_push( $_SESSION['panier']['quantite'],$_SESSION['panier']['quantite'][$i]);
+    //             array_push( $_SESSION['panier']['prix_article'],$_SESSION['panier']['prix_article'][$i]);
+    //                     }
+    //             }
+    //             $_SESSION['panier'] = $tmp;
+    //             unset($tmp);
+    //         }else{
+    //             echo'veuillez contacter un administrateur';
+    //         }
+    //     }
 
         public function montantGlobal(){
             $total = 0;

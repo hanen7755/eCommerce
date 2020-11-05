@@ -16,14 +16,14 @@ ob_start();
                   <div class="card-body"> 
                      <h5 class="card-title">Nom: <?= $article->getNom_article(); ?></h5> 
                      <p class="card-text"><?= $article->getDescription_article(); ?></p> 
-                  </div> 
+                  </div>
                   <ul class="list-group list-group-flush"> 
                      <li class="list-group-item">Prix: 
                         <span class="badge badge-primary"> 
                            <?= $article->getPrix_article(); ?> € 
                         </span> 
                      </li> 
- 
+
                      </li> 
                      <li class="list-group-item">promotion: <?= $article->getPromotion(); ?></li> 
                      <li class="list-group-item">stock: <?= $article->getStock(); ?></li> 
